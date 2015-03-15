@@ -32,7 +32,7 @@ define( [
         render : function ( ) {
             this.onRadiusChange( );
             this.onColorChange( );
-            this.onLabelChange( );
+            this.onNameChange( );
             this.onJobChange( );
 
         },
@@ -41,12 +41,16 @@ define( [
             this.$el.css( 'border-radius', this.model.get( 'radius' ) );
         },
 
-        onLabelChange : function ( ) {
+        onColorChange : function ( ) {
+            this.$el.css( 'background', this.model.get( 'color' ));
+        },
+
+        onNameChange : function ( ) {
             this.$el.html( this.model.get( 'name' ));
         },
 
-        onColorChange : function ( ) {
-            this.$el.css( 'background', this.model.get( 'color' ));
+        onJobChange : function ( ) {
+            this.$el.html( this.model.get( 'name' ));
         }
 
     } );

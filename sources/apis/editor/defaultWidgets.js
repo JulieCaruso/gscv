@@ -20,7 +20,7 @@ define( [
     'apis/editor/widgets/SlideredImage',
     'apis/editor/widgets/Slider',
     'apis/editor/widgets/Tabbed',
-    'apis/editor/widgets/TextAreaWidget',
+    'apis/editor/widgets/TextArea',
     'apis/editor/widgets/ToggleSwitch',
     'apis/editor/widgets/Vertical',
     'apis/editor/widgets/Widget'
