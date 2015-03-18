@@ -13,17 +13,20 @@ define( [
     return Widget.extend( {
 
         el: [ '<div class="widget label-widget">',
-            '          <span class="text">',
-            '          </span class="text">',
+            '          <INPUT class="text" type="text" value="Type your text.." name="text">',
             '      </div>'
         ].join( '' ),
+
+        events: _.extend( {}, Widget.prototype.events, {
+            'change .text:input': 'changeEvent'
+        } ),
 
         initialize: function ( options ) {
 
             options = _.defaults( options || {}, {
 
                 model: new Backbone.Model(),
-                name: 'value',
+                name: 'text',
 
                 content: undefined,
                 className: '',
@@ -40,11 +43,14 @@ define( [
             if ( this.options.className ) {
                 this.$( '.text' ).addClass( this.options.className );
             }
+        },
 
+        changeEvent: function () {
+            this.set( this.$( '.text' ).val() );
         },
 
         render: function () {
-
+            // this.$( '.text' ).val(this.get());
             this.$( '.text' )[ this.options.escape ? 'text' : 'html' ]( this.get() );
 
         }

@@ -13,7 +13,7 @@ define( [
 
         defaults : {
             radius : 10,
-            color : '#2C2C2C',
+            color : {r: 44, g: 44, b: 44},
             name : "Maël Nison",
             job : "Frontend Developer"
         }
@@ -42,16 +42,33 @@ define( [
         },
 
         onColorChange : function ( ) {
-            this.$el.css( 'background', this.model.get( 'color' ));
+            var rgb = this.model.get( 'color' );
+            var rounded = {
+    					r: rgb.r * 255,
+    					g: rgb.g * 255,
+    					b: rgb.b * 255
+    				};
+            var hex = '#' + ( 16777216 | rounded.b | ( rounded.g << 8 ) | ( rounded.r << 16 ) ).toString( 16 ).substr( 1 );
+    				this.$el.css( 'background',  hex);
         },
 
         onNameChange : function ( ) {
-            this.$el.html( this.model.get( 'name' ));
+
+            this.$el.find('.name').text(this.model.get('name').text);
+
+            //this.$el.css('name', this.model.get('name'));
+            // this.$( '.text' ).val( this.model.get('name') );
+            // this.$( '.text' ).val(this.get());
+            //var name = this.model.get( 'name' );
+            //this.$el.html( $('.name').val() ,  this.model.get( 'name' ));
+            //this.$el.html( $('.name').val(), this.model.get( 'FullName' ));
         },
 
         onJobChange : function ( ) {
-            this.$el.html( this.model.get( 'name' ));
-        }
+          var job = this.model.get( 'job' );
+          this.$el.html( $('.job').val() ,  this.model.get( 'job' ));
+            //this.$el.html( $('.name').val(), this.model.get( 'FullName' ));
+        },
 
     } );
 
@@ -87,7 +104,7 @@ define( [
         name  : 'name'
     } );
 
-    information.createWidget( 'Profession', 'TextArea', {
+    information.createWidget( 'Job', 'TextArea', {
         model : card,
         name  : 'job'
     } );
